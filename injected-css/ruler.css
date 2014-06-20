@@ -1,0 +1,123 @@
+﻿#pendule-background {
+  z-index: 8000;
+  position: absolute !important;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 100%; /* erased by JavaScript with document.width */
+  height: 100%; /* erased by JavaScript with document.height */
+  overflow: hidden;
+  -webkit-user-select: none;
+}
+#pendule-shadow-top,
+#pendule-shadow-bottom,
+#pendule-shadow-left,
+#pendule-shadow-right {
+  z-index: 7000;
+  position: absolute;
+  background-color: rgba(0,0,0,.5);
+  border: 0;
+}
+#pendule-shadow-top {
+  top: 0;
+  left: 0;
+}
+#pendule-shadow-bottom {
+  bottom: 0;
+  right: 0;
+}
+#pendule-shadow-left {
+  bottom: 0;
+  left: 0;
+}
+#pendule-shadow-right {
+  top: 0;
+  right: 0;
+}
+#pendule-ruler {
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #03a6eb;
+}
+#pendule-ruler-container {
+  position: relative;
+  cursor: move;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border-style: none;
+  overflow: hidden;
+}
+#pendule-ruler-top-left,
+#pendule-ruler-top-right,
+#pendule-ruler-bottom-left,
+#pendule-ruler-bottom-right {
+  z-index: 9998;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: #379eb1;
+  border: 1px solid #fff;
+}
+#pendule-ruler-top-left {
+  cursor: nw-resize;
+  top: -4px;
+  left: -4px;
+}
+#pendule-ruler-top-right {
+  cursor: ne-resize;
+  top: -4px;
+  right: -4px;
+}
+#pendule-ruler-bottom-right {
+  cursor: se-resize;
+  bottom: -4px;
+  right: -4px;
+}
+#pendule-ruler-bottom-left {
+  cursor: sw-resize;
+  bottom: -4px;
+  left: -4px;
+}
+#pendule-ruler-size {
+  z-index: 9998;
+  position: absolute;
+  text-align: center;
+  color: #484848;
+  background-color: #fff;
+  font-size: 10px;
+  font-family: verdana;
+  height: 18px;
+  line-height: 18px;
+  min-width: 65px;
+  padding: 0 4px;
+  left: 18px;
+  top: -20px;
+  border: 1px solid #bbb;
+  border-bottom: 0;
+}
+#pendule-ruler-close {
+  z-index: 9998;
+  position: absolute;
+  cursor: pointer;
+  color: #484848;
+  background: #fff;
+  font-size: 10px;
+  font-family: verdana;
+  font-weight: bold;
+  height: 18px;
+  line-height: 18px;
+  text-align: center;
+  padding: 0 10px;
+  bottom: -25px;
+  right: 7px;
+  border: 1px solid #bbb;
+}
