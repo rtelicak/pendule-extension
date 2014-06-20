@@ -1,11 +1,6 @@
-﻿/* bad solution, but works */
-html {
-  position: relative;
-}
-/* following rules are original untouched pendule files */
-#pendule-background {
+﻿#pendule-background {
   z-index: 8000;
-  position: absolute;
+  position: absolute !important;
   margin: 0;
   padding: 0;
   top: 0;

@@ -407,9 +407,12 @@
         this.toggleStyleSheet("/injected-css/ruler.css", "pendule-ruler-css");
         if (this.oPageRuler.bActivated) this.removeRuler();
         else {
-            var b = this.createDiv(document.documentElement, "pendule-background");
-            b.style.width = document.width + "px";
-            b.style.height = document.height + "px";
+            var windowHeight = document.getElementsByTagName('body')[0].scrollHeight;
+            var windowWidth = document.getElementsByTagName('body')[0].scrollWidth;
+            var b = this.createDiv(document.getElementsByTagName('body')[0], "pendule-background");
+            b.style.position = "fixed";
+            b.style.width = windowWidth + "px";
+            b.style.height = windowHeight + "px";
             this.createDiv(b, "pendule-shadow-top");
             this.createDiv(b, "pendule-shadow-bottom");
             this.createDiv(b, "pendule-shadow-left");
@@ -418,8 +421,8 @@
                 "pendule-ruler");
             c.style.width = "350px";
             c.style.height = "200px";
-            c.style.left = document.body.scrollLeft + (document.documentElement.clientWidth - 350) / 2 + "px";
-            c.style.top = document.body.scrollTop + (document.documentElement.clientHeight - 200) / 2 + "px";
+            c.style.left = document.body.scrollLeft + (window.innerWidth - 350) / 2 + "px";
+            c.style.top = document.body.scrollTop + (window.innerHeight - 200) / 2 + "px";
             this.createDiv(c, "pendule-ruler-size");
             var e = this.createDiv(c, "pendule-ruler-close");
             e.addEventListener("mousedown", function () {
@@ -499,14 +502,14 @@
                         25;
                     c < document.body.scrollTop && (document.body.scrollTop -= 25)
                 } else if (oPage.oPageRuler.bMoving) 
-                	b -= oPage.oPageRuler.iMoveX, 
-                	c -= oPage.oPageRuler.iMoveY, 
-                	// b < 0 ? b = 0 : b + a.clientWidth > oPage.oPageRuler.iPageWidth && (b = oPage.oPageRuler.iPageWidth - a.clientWidth), 
-                	// c < 0 ? c = 0 : c + a.clientHeight > oPage.oPageRuler.iPageHeight && (c = oPage.oPageRuler.iPageHeight - a.clientHeight), 
-                	a.style.left = b + "px", 
-                	a.style.top = c + "px", 
-                	oPage.oPageRuler.iEndX = b + a.clientWidth, oPage.oPageRuler.iStartX = b, 
-                	oPage.oPageRuler.iEndY = c + a.clientHeight, oPage.oPageRuler.iStartY = c;
+                    b -= oPage.oPageRuler.iMoveX, 
+                    c -= oPage.oPageRuler.iMoveY, 
+                    // b < 0 ? b = 0 : b + a.clientWidth > oPage.oPageRuler.iPageWidth && (b = oPage.oPageRuler.iPageWidth - a.clientWidth), 
+                    // c < 0 ? c = 0 : c + a.clientHeight > oPage.oPageRuler.iPageHeight && (c = oPage.oPageRuler.iPageHeight - a.clientHeight), 
+                    a.style.left = b + "px", 
+                    a.style.top = c + "px", 
+                    oPage.oPageRuler.iEndX = b + a.clientWidth, oPage.oPageRuler.iStartX = b, 
+                    oPage.oPageRuler.iEndY = c + a.clientHeight, oPage.oPageRuler.iStartY = c;
                 oPage.updateRulerShadow(a);
                 oPage.updateRulerDisplayedSize()
             }
@@ -527,23 +530,25 @@
         }
     },
     updateRulerShadow: function (a) {
-    	// oPage.oPageRuler.iPageHeight
-    	// height of html document
-    	var documentHeight = document.getElementsByTagName('body')[0].clientHeight;
+        // oPage.oPageRuler.iPageHeight
+        // height of html document
+        var documentHeight = document.getElementsByTagName('body')[0].scrollHeight;
+        var documentWidth = document.getElementsByTagName('body')[0].scrollWidth;
+
         $("pendule-shadow-top").style.height = parseInt(a.style.top) + "px";
         $("pendule-shadow-top").style.width = parseInt(a.style.left) + parseInt(a.style.width) + 1 + "px";
         $("pendule-shadow-left").style.height = documentHeight - parseInt(a.style.top) + "px";
         $("pendule-shadow-left").style.width = parseInt(a.style.left) + "px";
         var b = parseInt(a.style.top) + parseInt(a.style.height) + 1,
             b = b < 0 ? 0 : b,
-            c = oPage.oPageRuler.iPageWidth -
+            c = documentWidth -
             1 - (parseInt(a.style.left) + parseInt(a.style.width)),
             c = c < 0 ? 0 : c;
         $("pendule-shadow-right").style.height = b + "px";
         $("pendule-shadow-right").style.width = c + "px";
         b = documentHeight - 1 - (parseInt(a.style.top) + parseInt(a.style.height));
         b = b < 0 ? 0 : b;
-        c = oPage.oPageRuler.iPageWidth - parseInt(a.style.left);
+        c = documentWidth - parseInt(a.style.left);
         c = c < 0 ? 0 : c;
         $("pendule-shadow-bottom").style.height = b + "px";
         $("pendule-shadow-bottom").style.width = c + "px"
